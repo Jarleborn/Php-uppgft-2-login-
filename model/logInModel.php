@@ -16,16 +16,16 @@ class LogInModel{
 		$this->userInputPassword =  $_POST['passwordInput'];
 	
 		if($username == $userInputUsername && $password == $userInputPassword){
-			setRetMessage("Logged in");
+			$this->retMessage("Logged in");
 			return true;
 		}
 		elseif($userInputUsername == "" ){
-			setRetMessage("Username is missing");
+			$this->retMessage("Username is missing");
 			//TODO - Något from av meddleande till controllen att Man inte fyllt i fälten
 			return false;
 		}
 		elseif($userInputPassword == ""){
-			setRetMessage("Pasword is missing");
+			$this->retMessage("Pasword is missing");
 			return false;
 		}
 		else{
@@ -35,7 +35,17 @@ class LogInModel{
 
 	}
 	
-	public function setRetMessage(string $mes){
+	public function ReturnRetMessage(){
+		if(isset($this->retMessage)){
+			
+			return $this->retMessage;
+		}
+		else
+		{
+			return false;
+		}
+
+		$this->retMessage = "";
 
 	}
 }
