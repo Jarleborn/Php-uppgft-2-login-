@@ -54,10 +54,10 @@ class LoginView {
 					<p id="' . self::$messageId . '">' . $message . '</p>
 					
 					<label for="' . self::$name . '">Username :</label>
-					<input type="text" id="' . self::$name . '" name="' . self::$name . '" value="" />
+					<input type="text" id="' . self::$name . '" name=usernameInput"' . self::$name . '" value="" />
 
 					<label for="' . self::$password . '">Password :</label>
-					<input type="password" id="' . self::$password . '" name="' . self::$password . '" />
+					<input type="password" id="' . self::$password . '" name="passwordInput' . self::$password . '" />
 
 					<label for="' . self::$keep . '">Keep me logged in  :</label>
 					<input type="checkbox" id="' . self::$keep . '" name="' . self::$keep . '" />
