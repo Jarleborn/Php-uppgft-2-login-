@@ -22,6 +22,7 @@ class LoginView {
 	 */
 	public function response() {
 		$this->LogInModel = new LogInModel();
+		$this->LogInModel->login();
 		$message = $this->LogInModel->ReturnRetMessage();
 		
 		$response = $this->generateLoginFormHTML($message);

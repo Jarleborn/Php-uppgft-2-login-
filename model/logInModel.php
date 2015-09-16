@@ -5,8 +5,8 @@ class LogInModel{
 	private static $username = 'admin';
 	private static $password = 'Password';
 
-	private static $userInputUsername ="";
-	private static $userInputPassword = "";
+	public $userInputUsername ="";
+	public $userInputPassword = "";
 
 	private static $retMessage = "";
 	
