@@ -2,50 +2,64 @@
 
 class LogInModel{
 
-	private static $username = 'admin';
-	private static $password = 'Password';
+	private  $username = 'Admin';
+	private  $password = 'Password';
+	public $login;
 
-	public $userInputUsername ="";
-	public $userInputPassword = "";
-
-	private static $retMessage = "";
+	public  $retMessage;
 	
-	public function login(){
+	public function login($usrnam, $pass){
 
-		$this->userInputUsername =  $_POST['usernameInput'];
-		$this->userInputPassword =  $_POST['passwordInput'];
+		//var_dump($usrnam);
 	
-		if($username == $userInputUsername && $password == $userInputPassword){
-			$this->retMessage("Logged in");
-			return true;
+		if($this->username == $usrnam && $this->password == $pass){
+			$this->login = true;
+			//var_dump($this->login);
+			$this->retMessage = "Welcome";
+			//return true;
 		}
-		elseif($userInputUsername == "" ){
-			$this->retMessage("Username is missing");
+		elseif($usrnam == "" ){
+			$this->retMessage = "Username is missing";
+			//var_dump($this->retMessage);
+			$this->login = false;
+
 			//TODO - Något from av meddleande till controllen att Man inte fyllt i fälten
-			return false;
+			
+			//return false;
 		}
-		elseif($userInputPassword == ""){
-			$this->retMessage("Pasword is missing");
-			return false;
+		elseif($pass == ""){
+			$this->retMessage = "Password is missing";
+			$this->login = false;
+			//$_POST[$usrnam];
+			//return false;
 		}
 		else{
-			return false;
+			$this->retMessage = "Wrong name or password";
+			$this->login = false;
+			//return false;
 		}
-
+		
 
 	}
 	
 	public function ReturnRetMessage(){
-		if(isset($this->retMessage)){
-			
+		//var_dump($this->retMessage);
+		if($this->retMessage != null){
+			//var_dump($this->retMessage);
 			return $this->retMessage;
 		}
-		else
-		{
-			return false;
-		}
-
-		$this->retMessage = "";
-
 	}
+	public function isLoggedIn(){
+		//var_dump($this->login);
+		var_dump($his->login);
+		return $this->login;
+	}
+		// else
+		// {
+		// 	return "höhöhöh";
+		// }
+
+		// $this->retMessage = "";
+
+	
 }

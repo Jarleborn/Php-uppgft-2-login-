@@ -2,11 +2,12 @@
 
 class LogInControll{
 
-	public function LoginChecker(){
-		if( isset($_POST['usernameInput']) ){
-		    $LoginModel = new LogInModel();
-		    $LogInModel->login();
-		}
+	public function LoginChecker($model, $usr, $pas){
+		
+		    //$LoginModel = new LogInModel();
+		   // var_dump($LogInModel->login);
+		    $model->login($usr, $pas);
+		
 	}
 	
 }

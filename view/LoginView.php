@@ -10,7 +10,9 @@ class LoginView {
 	private static $keep = 'LoginView::KeepMeLoggedIn';
 	private static $messageId = 'LoginView::Message';
 	public $LogInModel = "";
-
+	public $userInputUsername;
+	public $userInputPassword;
+	public $userNameHolder;
 	
 
 	/**
@@ -21,13 +23,38 @@ class LoginView {
 	 * @return  void BUT writes to standard output and cookies!
 	 */
 	public function response() {
+		$this->LogInController = new LogInControll();
 		$this->LogInModel = new LogInModel();
-		$this->LogInModel->login();
-		$message = $this->LogInModel->ReturnRetMessage();
 		
+        //var_dump($_POST);
+	if( isset($_POST[self::$name]) || isset($_POST[self::$password]) ){
+		
+		$this->userInputUsername =  $_POST[self::$name];
+		$this->userInputPassword =  $_POST[self::$password];
+		
+
+
+		$this->LogInController->LoginChecker($this->LogInModel ,$this->userInputUsername, $this->userInputPassword);
+		$message = $this->LogInModel->ReturnRetMessage();
+
+		if($this->userInputUsername != ""){
+			$this->userNameHolder = $this->userInputUsername;
+			//var_dump($this->userNameHolder);
+		}
+ 		}
+		
+		
+		//var_dump($message);
 		$response = $this->generateLoginFormHTML($message);
-		//$response .= $this->generateLogoutButtonHTML($message);
 		return $response;
+
+		
+		
+		
+
+		//$response .= $this->generateLogoutButtonHTML($message);
+		
+
 	}
 
 	/**
@@ -57,10 +84,10 @@ class LoginView {
 					<p id="' . self::$messageId . '">' . $message . '</p>
 					
 					<label for="' . self::$name . '">Username :</label>
-					<input type="text" id="' . self::$name . '" name=usernameInput"' . self::$name . '" value="" />
+					<input type="text" id="' . self::$name . '" name="' . self::$name . '" value="'.$this->userNameHolder .'" />
 
 					<label for="' . self::$password . '">Password :</label>
-					<input type="password" id="' . self::$password . '" name="passwordInput' . self::$password . '" />
+					<input type="password" id="' . self::$password . '" name="' . self::$password . '" />
 
 					<label for="' . self::$keep . '">Keep me logged in  :</label>
 					<input type="checkbox" id="' . self::$keep . '" name="' . self::$keep . '" />
