@@ -11,7 +11,7 @@ require_once('controller/logInController.php');
 
 //MAKE SURE ERRORS ARE SHOWN... MIGHT WANT TO TURN THIS OFF ON A PUBLIC SERVER
 error_reporting(E_ALL);
-ini_set('display_errors', 'on');
+ini_set('display_errors', 'off');
 
 //CREATE OBJECTS OF THE VIEWS
 $lm = new LogInModel();
@@ -20,8 +20,9 @@ $dtv = new DateTimeView();
 $lv = new LayoutView();
 $lc = new LogInControll($v, $lm);
 
+$lc->LoginChecker();
 
 $checker = $lm->isLoggedIn();
-var_dump($checker);
+//var_dump($checker);
 $lv->render($checker, $v, $dtv);
 

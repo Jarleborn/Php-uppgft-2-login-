@@ -9,7 +9,7 @@ class LogInControll{
 		$this->LogInModel = $LogInModel;
 		$this->LoginView = $LoginView;
 	}
-	public function LoginChecker($usr, $pas){
+	public function LoginChecker(){
 		
 		    $this->LogInModel->login($this->LoginView->GetUserName(), $this->LoginView->GetPassword());
 		
