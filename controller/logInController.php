@@ -2,11 +2,16 @@
 
 class LogInControll{
 
-	public function LoginChecker($model, $usr, $pas){
+	private $LogInModel;
+	private $LoginView;
+	
+	public function __construct( LoginView $LoginView, LogInModel $LogInModel){
+		$this->LogInModel = $LogInModel;
+		$this->LoginView = $LoginView;
+	}
+	public function LoginChecker($usr, $pas){
 		
-		    //$LoginModel = new LogInModel();
-		   // var_dump($LogInModel->login);
-		    $model->login($usr, $pas);
+		    $this->LogInModel->login($this->LoginView->GetUserName(), $this->LoginView->GetPassword());
 		
 	}
 	

@@ -25,11 +25,11 @@ class LayoutView {
     ';
   }
   
-  private function renderIsLoggedIn($isLoggedIn) {
+  private function renderIsLoggedIn($checker) {
       //$lm = new LogInModel();
-    var_dump($isLoggedIn);
-      $checker = $isLoggedIn->isLoggedIn();
-      var_dump($checker);
+ 
+     
+      //var_dump($checker);
       //var_dump($isLoggedIn->isLoggedIn());
       //var_dump($checker);
 
@@ -37,7 +37,7 @@ class LayoutView {
       return '<h2>Logged in</h2>';
     }
     else {
-      return '<h2>Not logged in</h2>';
+      return '<h2>Not logged in </h2>';
     }
   }
 }

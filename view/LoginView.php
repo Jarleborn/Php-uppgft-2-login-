@@ -9,12 +9,12 @@ class LoginView {
 	private static $cookiePassword = 'LoginView::CookiePassword';
 	private static $keep = 'LoginView::KeepMeLoggedIn';
 	private static $messageId = 'LoginView::Message';
-	public $LogInModel = "";
-	public $userInputUsername;
-	public $userInputPassword;
+	public $LogInModel;
 	public $userNameHolder;
-	
-
+	public $userInputUsername;
+	public function __construct(LogInModel $LogInModel){
+		$this->LogInModel = $LogInModel;
+	}
 	/**
 	 * Create HTTP response
 	 *
@@ -23,38 +23,23 @@ class LoginView {
 	 * @return  void BUT writes to standard output and cookies!
 	 */
 	public function response() {
-		$this->LogInController = new LogInControll();
-		$this->LogInModel = new LogInModel();
-		
-        //var_dump($_POST);
-	if( isset($_POST[self::$name]) || isset($_POST[self::$password]) ){
-		
-		$this->userInputUsername =  $_POST[self::$name];
-		$this->userInputPassword =  $_POST[self::$password];
-		
-
-
-		$this->LogInController->LoginChecker($this->LogInModel ,$this->userInputUsername, $this->userInputPassword);
 		$message = $this->LogInModel->ReturnRetMessage();
+		$response = "";
+		if($message != true){
 
-		if($this->userInputUsername != ""){
-			$this->userNameHolder = $this->userInputUsername;
-			//var_dump($this->userNameHolder);
+			$response .= $this->generateLoginFormHTML($message);
 		}
- 		}
+		else{
+			$response .= $this->generateLogoutButtonHTML($message);
+		}
+
+		 if($this->userInputUsername != ""){
+		 	$this->userNameHolder = $this->userInputUsername;
+		 	//var_dump($this->userNameHolder);
+		}
 		
-		
-		//var_dump($message);
-		$response = $this->generateLoginFormHTML($message);
 		return $response;
-
-		
-		
-		
-
-		//$response .= $this->generateLogoutButtonHTML($message);
-		
-
+		//;	
 	}
 
 	/**
@@ -97,6 +82,30 @@ class LoginView {
 			</form>
 		';
 	}
+
+
+	public function GetUserName(){
+		if( isset($_POST[self::$name])){
+		$this->userInputUsername = $_POST[self::$name];
+		return  $_POST[self::$name];
+
+		//  $this->LogInController->LoginChecker($this->LogInModel ,$this->userInputUsername, $this->userInputPassword);
+		//  $message = $this->LogInModel->ReturnRetMessage();
+ 		}
+	}
+
+	public function GetPassword(){
+		if(isset($_POST[self::$password]) ){
+		
+		
+		return  $_POST[self::$password];
+
+		//  $this->LogInController->LoginChecker($this->LogInModel ,$this->userInputUsername, $this->userInputPassword);
+		//  $message = $this->LogInModel->ReturnRetMessage();
+ 		}
+	}
+
+
 	
 	//CREATE GET-FUNCTIONS TO FETCH REQUEST VARIABLES
 	private function getRequestUserName() {
