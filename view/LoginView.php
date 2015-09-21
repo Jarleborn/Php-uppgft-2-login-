@@ -12,6 +12,7 @@ class LoginView {
 	public $LogInModel;
 	public $userNameHolder;
 	public $userInputUsername;
+	public $response;
 	public function __construct(LogInModel $LogInModel){
 		$this->LogInModel = $LogInModel;
 	}
@@ -23,14 +24,17 @@ class LoginView {
 	 * @return  void BUT writes to standard output and cookies!
 	 */
 	public function response() {
+		$message = "";
 		$message = $this->LogInModel->ReturnRetMessage();
-		$response = "";
-		if($message != true){
+		$this->response = "";
+		//var_dump($this->LogInModel->UserWantsToLogInOrOut());
+		if($this->LogInModel->UserWantsToLogInOrOut() != true){
 
-			$response .= $this->generateLoginFormHTML($message);
+			$this->response .= $this->generateLoginFormHTML($message);
 		}
 		else{
-			$response .= $this->generateLogoutButtonHTML($message);
+			$this->response .= $this->generateLogoutButtonHTML($message);
+			//$response .= $this->generateLoginFormHTML($message);
 		}
 
 		 if($this->userInputUsername != ""){
@@ -38,7 +42,7 @@ class LoginView {
 		 	//var_dump($this->userNameHolder);
 		}
 		
-		return $response;
+		return $this->response;
 		//;	
 	}
 
@@ -92,6 +96,11 @@ class LoginView {
 		//  $this->LogInController->LoginChecker($this->LogInModel ,$this->userInputUsername, $this->userInputPassword);
 		//  $message = $this->LogInModel->ReturnRetMessage();
  		}
+ 		// elseif(GetPassword() == false && isset($_POST[self::$name]) == false){
+ 		// 	$this->message = "";
+
+ 		// }
+ 		
 	}
 
 	public function GetPassword(){
@@ -102,6 +111,9 @@ class LoginView {
 
 		//  $this->LogInController->LoginChecker($this->LogInModel ,$this->userInputUsername, $this->userInputPassword);
 		//  $message = $this->LogInModel->ReturnRetMessage();
+ 		}
+ 		else{
+ 			return false;
  		}
 	}
 

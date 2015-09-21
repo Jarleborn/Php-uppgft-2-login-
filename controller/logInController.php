@@ -14,5 +14,12 @@ class LogInControll{
 		    $this->LogInModel->login($this->LoginView->GetUserName(), $this->LoginView->GetPassword());
 		
 	}
+
+
+		
+
+	
+
+	//public function UserWantsToLogOut(){}
 	
 }
