@@ -10,9 +10,14 @@ class LogInControll{
 		$this->LoginView = $LoginView;
 	}
 	public function LoginChecker(){
-		
+		$this->LogInModel->DoesSessionExsist();
+		if($this->LogInModel->CheckIfLoggedIn() == false){
+		if($this->LoginView->Checklogin() == true){
+
 		    $this->LogInModel->login($this->LoginView->GetUserName(), $this->LoginView->GetPassword());
 		
+		}
+	   }
 	}
 
 

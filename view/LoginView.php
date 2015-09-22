@@ -24,9 +24,10 @@ class LoginView {
 	 * @return  void BUT writes to standard output and cookies!
 	 */
 	public function response() {
-		$message = "";
+		//$message = "";
 		$message = $this->LogInModel->ReturnRetMessage();
 		$this->response = "";
+		//$this->LogInModel->DoesSessionExsist();
 		//var_dump($this->LogInModel->UserWantsToLogInOrOut());
 		if($this->LogInModel->UserWantsToLogInOrOut() != true){
 
@@ -96,6 +97,10 @@ class LoginView {
 		//  $this->LogInController->LoginChecker($this->LogInModel ,$this->userInputUsername, $this->userInputPassword);
 		//  $message = $this->LogInModel->ReturnRetMessage();
  		}
+ 		else
+ 		{
+ 			return false;
+ 		}
  		// elseif(GetPassword() == false && isset($_POST[self::$name]) == false){
  		// 	$this->message = "";
 
@@ -116,6 +121,15 @@ class LoginView {
  			return false;
  		}
 	}
+	public function Checklogin(){
+		if(isset($_POST[self::$login])  ){
+		
+		
+		return  true;
+	}
+	}
+
+
 
 
 	

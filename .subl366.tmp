@@ -1,0 +1,27 @@
+                  var imgs = ['http://i60.tinypic.com/10p3q8o.png', 'http://i60.tinypic.com/10p3q8o.png', 'http://i60.tinypic.com/10p3q8o.png', 'http://i60.tinypic.com/10p3q8o.png', 'http://i60.tinypic.com/10p3q8o.png', 'http://i60.tinypic.com/10p3q8o.png', 'http://i60.tinypic.com/10p3q8o.png', 'http://i60.tinypic.com/10p3q8o.png']
+                        var count = 0
+                        var t =["s" , "saasdijoasdijoijojafaksalshlsdkamvm"  + "<br />" + "jfalfkaslfklmglacmandkfmll gmalsdöal sfmlgankgn"  + "<br />" + "jSkfflasflasflafaskfammmmmmmmmmsmsmsmsmsmsmmm" , "jafsalfkasöflöasmaksdkasdlasd" , "kfalsldaslöd aklsdköasldöl apskföasköaföskf aksöföas" + "<br />" + "gksalfklakflsakflaskflaskfalkalskflaklakflsakflasklfakl" + "<br />" + "Jsjflaksflaksflasdaksdölaööööööööööööööööö"]
+ 
+                        function showtext(){
+                        removeimg()
+                        document.getElementById("bdy").innerHTML = t[count];
+                        }
+ 
+                        function exec() {
+                        document.getElementById("bdy").innerHTML = "";
+                        show_image(imgs[count],
+                 1024,
+                 768,
+                 '');
+ 
+ 
+                        window.setTimeout("showtext()" ,23);
+                        count += 1
+ 
+                        }
+ 
+ 
+        </script>
+                <button type="button" onclick="exec()">Fortsätt</button>
+    </body>
+</html>
