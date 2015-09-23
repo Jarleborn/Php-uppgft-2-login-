@@ -26,13 +26,6 @@ class LayoutView {
   }
   
   private function renderIsLoggedIn($checker) {
-      //$lm = new LogInModel();
- 
-     
-      //var_dump($checker);
-      //var_dump($isLoggedIn->isLoggedIn());
-      //var_dump($checker);
-
     if ($checker) {
       return '<h2>Logged in</h2>';
     }

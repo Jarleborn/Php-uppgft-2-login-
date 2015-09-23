@@ -10,13 +10,22 @@ class LogInControll{
 		$this->LoginView = $LoginView;
 	}
 	public function LoginChecker(){
+		session_start();
 		$this->LogInModel->DoesSessionExsist();
 		if($this->LogInModel->CheckIfLoggedIn() == false){
-		if($this->LoginView->Checklogin() == true){
+			if($this->LoginView->Checklogin() == true){
 
-		    $this->LogInModel->login($this->LoginView->GetUserName(), $this->LoginView->GetPassword());
-		
-		}
+			    $this->LogInModel->login($this->LoginView->GetUserName(), $this->LoginView->GetPassword());
+			
+			}
+	   }
+	   else{
+	   		if($this->LogInModel->CheckIfLoggedIn() == true){
+				if($this->LoginView->ChecklogOut() == true){
+				$this->LogInModel->StopSession();
+			
+				}
+	   		}
 	   }
 	}
 

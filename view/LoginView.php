@@ -24,27 +24,20 @@ class LoginView {
 	 * @return  void BUT writes to standard output and cookies!
 	 */
 	public function response() {
-		//$message = "";
 		$message = $this->LogInModel->ReturnRetMessage();
 		$this->response = "";
-		//$this->LogInModel->DoesSessionExsist();
-		//var_dump($this->LogInModel->UserWantsToLogInOrOut());
 		if($this->LogInModel->UserWantsToLogInOrOut() != true){
 
-			$this->response .= $this->generateLoginFormHTML($message);
+			$this->response .= $this->generateLoginFormHTML($message, $_POST[self::$name]);
 		}
 		else{
 			$this->response .= $this->generateLogoutButtonHTML($message);
-			//$response .= $this->generateLoginFormHTML($message);
-		}
-
-		 if($this->userInputUsername != ""){
-		 	$this->userNameHolder = $this->userInputUsername;
-		 	//var_dump($this->userNameHolder);
+			
 		}
 		
+
 		return $this->response;
-		//;	
+		
 	}
 
 	/**
@@ -66,7 +59,7 @@ class LoginView {
 	* @param $message, String output message
 	* @return  void, BUT writes to standard output!
 	*/
-	private function generateLoginFormHTML($message) {
+	private function generateLoginFormHTML($message, $RightUserName) {
 		return '
 			<form method="post" > 
 				<fieldset>
@@ -74,7 +67,7 @@ class LoginView {
 					<p id="' . self::$messageId . '">' . $message . '</p>
 					
 					<label for="' . self::$name . '">Username :</label>
-					<input type="text" id="' . self::$name . '" name="' . self::$name . '" value="'.$this->userNameHolder .'" />
+					<input type="text" id="' . self::$name . '" name="' . self::$name . '" value="'.$RightUserName .'" />
 
 					<label for="' . self::$password . '">Password :</label>
 					<input type="password" id="' . self::$password . '" name="' . self::$password . '" />
@@ -93,29 +86,17 @@ class LoginView {
 		if( isset($_POST[self::$name])){
 		$this->userInputUsername = $_POST[self::$name];
 		return  $_POST[self::$name];
-
-		//  $this->LogInController->LoginChecker($this->LogInModel ,$this->userInputUsername, $this->userInputPassword);
-		//  $message = $this->LogInModel->ReturnRetMessage();
  		}
  		else
  		{
  			return false;
  		}
- 		// elseif(GetPassword() == false && isset($_POST[self::$name]) == false){
- 		// 	$this->message = "";
-
- 		// }
  		
 	}
 
 	public function GetPassword(){
 		if(isset($_POST[self::$password]) ){
-		
-		
-		return  $_POST[self::$password];
-
-		//  $this->LogInController->LoginChecker($this->LogInModel ,$this->userInputUsername, $this->userInputPassword);
-		//  $message = $this->LogInModel->ReturnRetMessage();
+			return  $_POST[self::$password];
  		}
  		else{
  			return false;
@@ -125,10 +106,20 @@ class LoginView {
 		if(isset($_POST[self::$login])  ){
 		
 		
-		return  true;
-	}
+			return  true;
+		}
 	}
 
+	public function CheckLogOut(){
+		if(isset($_POST[self::$logout])  ){
+		
+		
+			return  true;
+		}
+	}
+
+	
+	
 
 
 
