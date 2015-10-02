@@ -13,6 +13,7 @@ class LoginView {
 	public $userNameHolder;
 	public $userInputUsername;
 	public $response;
+	public $bajs;
 	public function __construct(LogInModel $LogInModel){
 		$this->LogInModel = $LogInModel;
 	}
@@ -32,12 +33,12 @@ class LoginView {
 		}
 		else{
 			$this->response .= $this->generateLogoutButtonHTML($message);
-			
+
 		}
-		
+
 
 		return $this->response;
-		
+
 	}
 
 	/**
@@ -53,7 +54,7 @@ class LoginView {
 			</form>
 		';
 	}
-	
+
 	/**
 	* Generate HTML code on the output buffer for the logout button
 	* @param $message, String output message
@@ -61,11 +62,11 @@ class LoginView {
 	*/
 	private function generateLoginFormHTML($message, $RightUserName) {
 		return '
-			<form method="post" > 
+			<form method="post" >
 				<fieldset>
 					<legend>Login - enter Username and password</legend>
 					<p id="' . self::$messageId . '">' . $message . '</p>
-					
+
 					<label for="' . self::$name . '">Username :</label>
 					<input type="text" id="' . self::$name . '" name="' . self::$name . '" value="'.$RightUserName .'" />
 
@@ -74,7 +75,7 @@ class LoginView {
 
 					<label for="' . self::$keep . '">Keep me logged in  :</label>
 					<input type="checkbox" id="' . self::$keep . '" name="' . self::$keep . '" />
-					
+
 					<input type="submit" name="' . self::$login . '" value="login" />
 				</fieldset>
 			</form>
@@ -91,7 +92,7 @@ class LoginView {
  		{
  			return false;
  		}
- 		
+
 	}
 
 	public function GetPassword(){
@@ -104,29 +105,29 @@ class LoginView {
 	}
 	public function Checklogin(){
 		if(isset($_POST[self::$login])  ){
-		
-		
+
+
 			return  true;
 		}
 	}
 
 	public function CheckLogOut(){
 		if(isset($_POST[self::$logout])  ){
-		
-		
+
+
 			return  true;
 		}
 	}
 
-	
-	
 
 
 
-	
+
+
+
 	//CREATE GET-FUNCTIONS TO FETCH REQUEST VARIABLES
 	private function getRequestUserName() {
 		//RETURN REQUEST VARIABLE: USERNAME
 	}
-	
+
 }
