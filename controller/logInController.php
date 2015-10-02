@@ -27,13 +27,5 @@ class LogInControll{
 				}
 	   		}
 	   }
-	}
-
-
-		
-
-	
-
-	//public function UserWantsToLogOut(){}
-	
+	}	
 }

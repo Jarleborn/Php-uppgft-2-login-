@@ -39,7 +39,7 @@ class LogInModel{
 			return $this->retMessage;
 		}
 	}
-
+	//kollar om användaren vill logga ut eller in 
 	public function UserWantsToLogInOrOut(){
 			if ($_SESSION[self::$LOGGED_IN_SESSION] == true){
 				return true;
@@ -61,7 +61,7 @@ class LogInModel{
 				$_SESSION[self::$LOGGED_IN_SESSION];
 			}
 	}
-
+	//kollar om anvädnaren är inloggad
 	public function CheckIfLoggedIn(){
 		if($_SESSION[self::$LOGGED_IN_SESSION] == true){
 			return true;
