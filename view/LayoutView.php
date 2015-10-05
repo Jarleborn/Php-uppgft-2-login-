@@ -3,7 +3,7 @@
 
 class LayoutView {
   
-  public function render($LoggedIn, LoginView $v, DateTimeView $dtv) {
+  public function render($LoggedIn, NavigationVIew $v, DateTimeView $dtv, $registerLink) {
 
     echo '<!DOCTYPE html>
       <html>
@@ -13,6 +13,7 @@ class LayoutView {
         </head>
         <body>
           <h1>Assignment 2</h1>
+        '.$registerLink.'
           ' . $this->renderIsLoggedIn($LoggedIn). '
           
           <div class="container">

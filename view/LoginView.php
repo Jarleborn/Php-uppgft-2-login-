@@ -14,7 +14,7 @@ class LoginView {
 	public $userInputUsername;
 	public $response;
 	public $bajs;
-	public function __construct(LogInModel $LogInModel){
+	public function __construct(LogInModel $LogInModel ){
 		$this->LogInModel = $LogInModel;
 	}
 	/**
@@ -24,29 +24,32 @@ class LoginView {
 	 *
 	 * @return  void BUT writes to standard output and cookies!
 	 */
-	public function response() {
-		$message = $this->LogInModel->ReturnRetMessage();
-		$this->response = "";
-		if($this->LogInModel->UserWantsToLogInOrOut() != true){
+	// public function response() {
+	// 	$message = $this->LogInModel->ReturnRetMessage();
+	// 	$this->response = "";
+	// 	if($this->LogInModel->UserWantsToLogInOrOut() != true){
 
-			$this->response .= $this->generateLoginFormHTML($message, $_POST[self::$name]);
-		}
-		else{
-			$this->response .= $this->generateLogoutButtonHTML($message);
+	// 		$this->response .= $this->generateLoginFormHTML($message, $_POST[self::$name]);
+	// 	}
+	// 	else{
+	// 		$this->response .= $this->generateLogoutButtonHTML($message);
 
-		}
+	// 	}
 
 
-		return $this->response;
+	// 	return $this->response;
 
-	}
+	// }
 
 	/**
 	* Generate HTML code on the output buffer for the logout button
 	* @param $message, String output message
 	* @return  void, BUT writes to standard output!
 	*/
-	private function generateLogoutButtonHTML($message) {
+
+
+	//Här va de private innan
+	public function generateLogoutButtonHTML($message) {
 		return '
 			<form  method="post" >
 				<p id="' . self::$messageId . '">' . $message .'</p>
@@ -60,7 +63,9 @@ class LoginView {
 	* @param $message, String output message
 	* @return  void, BUT writes to standard output!
 	*/
-	private function generateLoginFormHTML($message, $RightUserName) {
+
+	//Här va de private innan
+	public function generateLoginFormHTML($message, $RightUserName) {
 		return '
 			<form method="post" >
 				<fieldset>
